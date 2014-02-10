@@ -6,14 +6,14 @@ import java.util.List;
 import org.codehaus.groovy.grails.commons.AbstractGrailsClass;
 import org.codehaus.groovy.grails.commons.GrailsClassUtils;
 
-public interface DefaultGrailsSitemapClass extends AbstractGrailsClass implements GrailsSitemapClass {
+public class DefaultGrailsSitemapClass extends AbstractGrailsClass implements GrailsSitemapClass {
 
 	public DefaultGrailsSitemapClass(Class clazz) {
         super(clazz, GrailsSitemapArtefactHandler.SUFFIX);
     }
 
 	public String getSitemapName() {
-        Object sitemapName = GrailsClassUtils.getStaticPropertyValue(getClazz(), "sitemap");
+		Object sitemapName = GrailsClassUtils.getStaticPropertyValue(getClazz(), "sitemap");
 		if(sitemapName == null) {
 			return null;
 		} else {

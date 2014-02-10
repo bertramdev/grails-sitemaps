@@ -1,3 +1,5 @@
+import org.springframework.context.ApplicationContext
+
 class SitemapUrlMappings {
 
 	static mappings = {ApplicationContext context ->

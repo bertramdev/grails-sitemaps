@@ -10,7 +10,7 @@ class SitemapsGrailsPlugin {
     def description     = 'TODO: IMPLEMENT'
     def documentation   = "http://bertramdev.github.io/asset-pipeline"
     def license         = "APACHE"
-    def organization    = [ name: "Bertram Capital", url: "http://www.bertramcapital.com/" ]
+    def organization    = [name: "Bertram Labs", url: "http://www.bertramlabs.com/"]
     def issueManagement = [ system: "GITHUB", url: "http://github.com/bertramdev/grails-sitemaps/issues" ]
     def scm             = [ url: "http://github.com/bertramdev/grails-sitemaps" ]
     def pluginExcludes  = [
@@ -18,10 +18,9 @@ class SitemapsGrailsPlugin {
         "test/dummy/**"
     ]
     def developers      = [ [name: 'Brian Wheeler'] ]
-    // register the artefact handler
+
     def artefacts = [GrailsSitemapArtefactHandler]
      
-    // watch for any changes in these directories
     def watchedResources = [
         "file:./grails-app/sitemaps/**/*Sitemap.groovy",
         "file:../../plugins/*/sitemaps/**/*Sitemap.groovy"

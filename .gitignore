@@ -1,4 +1,6 @@
 target/
 .project
 .DS_Store
+*.zip
+plugin.xml
 logs/

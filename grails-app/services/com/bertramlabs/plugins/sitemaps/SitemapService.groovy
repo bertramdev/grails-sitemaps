@@ -11,7 +11,7 @@ class SitemapService {
 	}
 
 	def getAt(String name) {
-        def sitemapClass = grailsApplication.sitemapClasses.find { it.sitemap == name } // find the one with the matching key
+        def sitemapClass = grailsApplication.sitemapClasses.find { it.sitemap == name }
 		if(sitemapClass) {
 			instantiateHandler(sitemapClass)	
 		} else {
@@ -20,17 +20,16 @@ class SitemapService {
 	}
 
 
-    protected instantiateHandler(handlerClass) {
-        createBeanBuilder().with {
-            beans {
-                handler(handlerClass) {
-                    // autowire the handler so it can use services etc.
-                    it.autowire = true
-                }
-            }
-            createApplicationContext().getBean('handler')
-        }
-    }
+    protected instantiateHandler(handlerClass) {
+        createBeanBuilder().with {
+            beans {
+                handler(handlerClass) {
+                    it.autowire = true
+                }
+            }
+            createApplicationContext().getBean('handler')
+        }
+    }
      /**
      * Retrieves the sitemap path from the property [grails.plugin.sitemaps.mapping] which is used by the url mapping and the
      * taglib.  The property cannot contain <code>/</code>, and must be one level deep
