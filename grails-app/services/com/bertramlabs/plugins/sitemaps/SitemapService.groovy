@@ -37,7 +37,7 @@ class SitemapService {
      * @return the path
      * @throws IllegalArgumentException if the path contains <code>/</code>
      */
-    String getAssetMapping() {
+    String getSitemapMapping() {
         def path = grailsApplication.config?.grails?.plugin?.sitemaps?.mapping ?: "sitemap"
         if (path.contains("/")) {
             String message = "the property [grails.plugin.sitemaps.mapping] can only be one level" +
