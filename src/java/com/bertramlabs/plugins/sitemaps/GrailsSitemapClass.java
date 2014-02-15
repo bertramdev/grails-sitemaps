@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.List;
 
 public interface GrailsSitemapClass extends GrailsClass {
-	public String getSitemapName();
+	public String getSitemap();
 
 	public List getSitemapUrls();
 

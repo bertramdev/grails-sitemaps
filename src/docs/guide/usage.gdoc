@@ -1,0 +1,30 @@
+To get started simply create a sitemap class in the @grails-app/sitemaps@ folder with the following implementation:
+
+{code}
+class CmsSitemap {
+  static sitemap = "cms"
+
+  public List getSitemapUrls() {
+    return [
+      [url: 'http://mysite.com/page', lastmod: new Date()],
+      [url: 'http://mysite.com/page2', lastmod: new Date(), priority: 0.1]
+      [url: 'http://mysite.com/page3', lastmod: new Date(), changefreq: 'weekly']
+    ]
+  }
+
+  public String getDefaultChangeFrequency() {
+      return "monthly"
+  }
+
+  public Double getDefaultPriority() {
+      return 1.0
+  }
+
+}
+{code}
+
+As long as the 3 methods above are defined, you are good to go. The @sitemap@ static variable defines the url name to represent this particular sitemap. In the case of the example above, the sitemap would be viewable with the url: @http://mysite.com/sitemap/cms.xml@.
+
+All sitemaps are combined into a single sitemap set via the @/sitemap.xml@ url mapping.
+
+This plugin also takes advantage of the grails cache plugin to cache your sitemaps. These sitemap caches can be evicted by using the @sitemapService.evictCache()@ method.

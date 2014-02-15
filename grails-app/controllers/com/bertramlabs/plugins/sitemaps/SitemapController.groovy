@@ -1,4 +1,5 @@
 package com.bertramlabs.plugins.sitemaps
+import grails.plugin.cache.Cacheable
 
 class SitemapController {
 	def sitemapService
@@ -10,7 +11,7 @@ class SitemapController {
     		sitemapindex(xmlns:"http://www.sitemaps.org/schemas/sitemap/0.9") {
     			sitemaps.each { sitemapName ->
     				sitemap() {
-	    				loc(g.createLink(controller: 'sitemap', plugin: 'sitemaps', action: 'show', id: sitemapName))
+	    				loc(g.createLink(controller: 'sitemap', plugin: 'sitemaps', action: 'show', params: [id: sitemapName, format: 'xml'], absolute: true, base: request.baseUrl))
 	    				lastmod(new Date())
 	    			}	
     			}
@@ -20,10 +21,12 @@ class SitemapController {
 
     }
 
+    @Cacheable('sitemap.show')
     def show() {
     	def sitemapClass = sitemapService[params.id]
     	if(!sitemapClass) {
     		render status: 404
+            return
     	}
 
     	render(contentType: 'application/xml') {

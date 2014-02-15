@@ -1,5 +1,6 @@
 package com.bertramlabs.plugins.sitemaps
 import grails.spring.BeanBuilder
+import grails.plugin.cache.CacheEvict
 
 class SitemapService {
 	def grailsApplication
@@ -11,25 +12,37 @@ class SitemapService {
 	}
 
 	def getAt(String name) {
+        println "looking for class ${name} ${grailsApplication.sitemapClasses.collect{ it.sitemap}}"
         def sitemapClass = grailsApplication.sitemapClasses.find { it.sitemap == name }
 		if(sitemapClass) {
+            println "Found Class"
 			instantiateHandler(sitemapClass)	
 		} else {
 			return null
 		}
 	}
 
+    @CacheEvict(value='sitemap.show', allEntries=true)
+    def evictCache() {
+        log.info("Evicting Sitemap Cache")
+    }
 
+    protected createBeanBuilder() {
+        new BeanBuilder(grailsApplication.mainContext, grailsApplication.classLoader)
+    }
     protected instantiateHandler(handlerClass) {
         createBeanBuilder().with {
             beans {
-                handler(handlerClass) {
+                handler(handlerClass.clazz) {
                     it.autowire = true
+                    // it.scope = "singleton"
                 }
             }
             createApplicationContext().getBean('handler')
         }
+        // grailsApplication.mainContext.getBean('sitemap')
     }
+
      /**
      * Retrieves the sitemap path from the property [grails.plugin.sitemaps.mapping] which is used by the url mapping and the
      * taglib.  The property cannot contain <code>/</code>, and must be one level deep

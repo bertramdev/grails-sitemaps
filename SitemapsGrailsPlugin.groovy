@@ -2,13 +2,13 @@ import com.bertramlabs.plugins.sitemaps.GrailsSitemapArtefactHandler
 
 class SitemapsGrailsPlugin {
 
-    def version = "0.1.0"
-    def grailsVersion = "2.0 > *"
-    def title = "Sitemaps Plugin" // Headline display name of the plugin
+    def version         = "0.1.0"
+    def grailsVersion   = "2.0 > *"
+    def title           = "Sitemaps Plugin" // Headline display name of the plugin
     def author          = "David Estes"
     def authorEmail     = "destes@bcap.com"
-    def description     = 'TODO: IMPLEMENT'
-    def documentation   = "http://bertramdev.github.io/asset-pipeline"
+    def description     = 'Creates a standard interface for building sitemaps via a common Sitemap Artefact.'
+    def documentation   = "http://github.com/bertramdev/grails-sitemaps"
     def license         = "APACHE"
     def organization    = [name: "Bertram Labs", url: "http://www.bertramlabs.com/"]
     def issueManagement = [ system: "GITHUB", url: "http://github.com/bertramdev/grails-sitemaps/issues" ]
@@ -32,7 +32,7 @@ class SitemapsGrailsPlugin {
             application.addArtefact(GrailsSitemapArtefactHandler.TYPE, event.source)
  
             // Reload subclasses
-            application.productHandlerClasses.each {
+            application.sitemapClasses.each {
                 if (it.clazz != event.source && oldClass.clazz.isAssignableFrom(it.clazz)) {
                     def newClass = application.classLoader.reloadClass(it.clazz.name)
                     application.addArtefact(GrailsSitemapArtefactHandler.TYPE, newClass)

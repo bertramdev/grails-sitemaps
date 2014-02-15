@@ -12,7 +12,7 @@ public class DefaultGrailsSitemapClass extends AbstractGrailsClass implements Gr
         super(clazz, GrailsSitemapArtefactHandler.SUFFIX);
     }
 
-	public String getSitemapName() {
+	public String getSitemap() {
 		Object sitemapName = GrailsClassUtils.getStaticPropertyValue(getClazz(), "sitemap");
 		if(sitemapName == null) {
 			return null;
