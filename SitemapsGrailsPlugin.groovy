@@ -4,7 +4,7 @@ class SitemapsGrailsPlugin {
 
     def version         = "0.1.0"
     def grailsVersion   = "2.0 > *"
-    def title           = "Sitemaps Plugin" // Headline display name of the plugin
+    def title           = "Sitemaps Plugin"
     def author          = "David Estes"
     def authorEmail     = "destes@bcap.com"
     def description     = 'Creates a standard interface for building sitemaps via a common Sitemap Artefact.'
@@ -20,7 +20,7 @@ class SitemapsGrailsPlugin {
     def developers      = [ [name: 'Brian Wheeler'] ]
 
     def artefacts = [GrailsSitemapArtefactHandler]
-     
+
     def watchedResources = [
         "file:./grails-app/sitemaps/**/*Sitemap.groovy",
         "file:../../plugins/*/sitemaps/**/*Sitemap.groovy"
@@ -30,7 +30,7 @@ class SitemapsGrailsPlugin {
         if (application.isArtefactOfType(GrailsSitemapArtefactHandler.TYPE, event.source)) {
             def oldClass = application.getProductHandlerClass(event.source.name)
             application.addArtefact(GrailsSitemapArtefactHandler.TYPE, event.source)
- 
+
             // Reload subclasses
             application.sitemapClasses.each {
                 if (it.clazz != event.source && oldClass.clazz.isAssignableFrom(it.clazz)) {

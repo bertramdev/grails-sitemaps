@@ -1,16 +1,16 @@
 package com.bertramlabs.plugins.sitemaps;
-import org.codehaus.groovy.grails.commons.GrailsClass;
 
-import java.util.Map;
 import java.util.List;
 
+import org.codehaus.groovy.grails.commons.GrailsClass;
+
 public interface GrailsSitemapClass extends GrailsClass {
-	public String getSitemap();
+	String getSitemap();
 
-	public List getSitemapUrls();
+	@SuppressWarnings("rawtypes")
+	List getSitemapUrls();
 
-	public String getDefaultChangeFrequency();
+	String getDefaultChangeFrequency();
 
-	public Double getDefaultPriority();
+	Double getDefaultPriority();
 }
-

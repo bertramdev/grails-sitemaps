@@ -4,7 +4,7 @@ To get started simply create a sitemap class in the @grails-app/sitemaps@ folder
 class CmsSitemap {
   static sitemap = "cms"
 
-  public List getSitemapUrls() {
+  List getSitemapUrls() {
     return [
       [url: 'http://mysite.com/page', lastmod: new Date()],
       [url: 'http://mysite.com/page2', lastmod: new Date(), priority: 0.1]
@@ -12,11 +12,11 @@ class CmsSitemap {
     ]
   }
 
-  public String getDefaultChangeFrequency() {
+  String getDefaultChangeFrequency() {
       return "monthly"
   }
 
-  public Double getDefaultPriority() {
+  Double getDefaultPriority() {
       return 1.0
   }
 
