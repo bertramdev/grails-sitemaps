@@ -1,4 +1,10 @@
-To get started simply create a sitemap class in the @grails-app/sitemaps@ folder with the following implementation:
+To get started simply use the grails script @create-siteamp@ :
+
+{code}
+grails create-sitemap cms
+{code}
+
+The above will create a CmsSitemap in the @grails-app/sitemaps@: Folder and look like the template below:
 
 {code}
 class CmsSitemap {
