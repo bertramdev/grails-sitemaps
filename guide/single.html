@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <title>Sitemaps Plugin 0.1.0</title>
+        <title>Sitemaps Plugin 0.2.0</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
         <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
@@ -54,7 +54,7 @@ function addJsClass(el) {
                         <div class="project">
                             <h1>Sitemaps Plugin - Reference Documentation</h1>
                             <p><strong>Authors:</strong> David Estes</p>
-                            <p><strong>Version:</strong> 0.1.0</p>
+                            <p><strong>Version:</strong> 0.2.0</p>
                             
                         </div>
 
@@ -77,16 +77,16 @@ You can simply create Sitemap classes in the <code>grails-app/sitemaps</code> fo
 
 
 <h1 id="usage">2 Usage</h1>
-To get started simply create a sitemap class in the <code>grails-app/sitemaps</code> folder with the following implementation:<p class="paragraph"/><div class="code"><pre>class CmsSitemap &#123;
-  <span class="java&#45;keyword">static</span> sitemap = <span class="java&#45;quote">"cms"</span><p class="paragraph"/>  <span class="java&#45;keyword">public</span> List getSitemapUrls() &#123;
+To get started simply use the grails script <code>create-siteamp</code> :<p class="paragraph"/><div class="code"><pre>grails create&#45;sitemap cms</pre></div><p class="paragraph"/>The above will create a CmsSitemap in the <code>grails-app/sitemaps</code>: Folder and look like the template below:<p class="paragraph"/><div class="code"><pre>class CmsSitemap &#123;
+  <span class="java&#45;keyword">static</span> sitemap = <span class="java&#45;quote">"cms"</span><p class="paragraph"/>  List getSitemapUrls() &#123;
     <span class="java&#45;keyword">return</span> &#91;
       &#91;url: 'http://mysite.com/page', lastmod: <span class="java&#45;keyword">new</span> Date()&#93;,
       &#91;url: 'http://mysite.com/page2', lastmod: <span class="java&#45;keyword">new</span> Date(), priority: 0.1&#93;
       &#91;url: 'http://mysite.com/page3', lastmod: <span class="java&#45;keyword">new</span> Date(), changefreq: 'weekly'&#93;
     &#93;
-  &#125;<p class="paragraph"/>  <span class="java&#45;keyword">public</span> <span class="java&#45;object">String</span> getDefaultChangeFrequency() &#123;
+  &#125;<p class="paragraph"/>  <span class="java&#45;object">String</span> getDefaultChangeFrequency() &#123;
       <span class="java&#45;keyword">return</span> <span class="java&#45;quote">"monthly"</span>
-  &#125;<p class="paragraph"/>  <span class="java&#45;keyword">public</span> <span class="java&#45;object">Double</span> getDefaultPriority() &#123;
+  &#125;<p class="paragraph"/>  <span class="java&#45;object">Double</span> getDefaultPriority() &#123;
       <span class="java&#45;keyword">return</span> 1.0
   &#125;<p class="paragraph"/>&#125;</pre></div><p class="paragraph"/>As long as the 3 methods above are defined, you are good to go. The <code>sitemap</code> static variable defines the url name to represent this particular sitemap. In the case of the example above, the sitemap would be viewable with the url: <code>http://mysite.com/sitemap/cms.xml</code>.<p class="paragraph"/>All sitemaps are combined into a single sitemap set via the <code>/sitemap.xml</code> url mapping.<p class="paragraph"/>This plugin also takes advantage of the grails cache plugin to cache your sitemaps. These sitemap caches can be evicted by using the <code>sitemapService.evictCache()</code> method.
 
