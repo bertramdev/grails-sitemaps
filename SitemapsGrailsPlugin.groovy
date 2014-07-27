@@ -2,7 +2,7 @@ import com.bertramlabs.plugins.sitemaps.GrailsSitemapArtefactHandler
 
 class SitemapsGrailsPlugin {
 
-    def version         = "0.2.0"
+    def version         = "1.0.0"
     def grailsVersion   = "2.0 > *"
     def title           = "Sitemaps Plugin"
     def author          = "David Estes"

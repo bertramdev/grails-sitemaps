@@ -14,7 +14,7 @@ class SitemapController {
 					sitemap {
 						loc(g.createLink(controller: 'sitemap', plugin: 'sitemaps', action: 'show', absolute: true,
 						                 params: [id: sitemapName, format: 'xml'], base: request.baseUrl))
-						lastmod(new Date())
+						lastmod((new Date()).format('yyyy-MM-dd'))
 					}
 				}
 			}
@@ -34,7 +34,7 @@ class SitemapController {
 				sitemapClass.sitemapUrls.each { sitemapUrl ->
 					url {
 						loc(sitemapUrl.url)
-						lastmod(sitemapUrl.lastmod ?: new Date())
+						lastmod((sitemapUrl.lastmod ?: new Date()).format('yyyy-MM-dd'))
 						changefreq(sitemapUrl.changefreq ?: sitemapClass.defaultChangeFrequency)
 						priority(sitemapUrl.priority ?: sitemapClass.defaultPriority)
 					}
